@@ -1,7 +1,7 @@
 import axios from "axios";
 
-export const API_URL = `http://localhost:8800`;
-// export const API_URL = `https://api2.ict.lviv.ua`;
+// export const API_URL = `http://localhost:8800`;
+export const API_URL = `https://api.logistic-mira.space`;
 
 const instance = axios.create({
   baseURL: API_URL,
