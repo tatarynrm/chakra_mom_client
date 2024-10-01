@@ -19,6 +19,8 @@ instance.interceptors.request.use((config) => {
   return config;
 }, (error) => {
   // Обробка помилок, якщо потрібно
+  console.log('ERRROR AXIOS INTERCEPTOR',error);
+  
   return Promise.reject(error);
 });
 

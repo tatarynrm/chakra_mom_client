@@ -12,7 +12,7 @@ const TransportationsList = () => {
     const [totalPages, setTotalPages] = useState(1);
     const fetchTransportations = async (page) => {
         try {
-            const response = await instance.get(`http://localhost:8800/transportation/list?page=${page}`);
+            const response = await instance.get(`/transportation/list?page=${page}`);
             console.log('RESPONSE',response);
             
             setTransportations(response.data.data);
