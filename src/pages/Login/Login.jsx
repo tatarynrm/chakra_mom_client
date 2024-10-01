@@ -96,7 +96,7 @@ const Login = () => {
               <Button marginTop={'40px'} type="submit" disabled={isSubmitting}>
                 Submit
               </Button>
-              <a href="http://localhost:8800/auth/google">Увійти через Google</a>
+              <a href="https://api.logistic-mira.space/auth/google">Увійти через Google</a>
 
 {/* <GoogleLoginComponent/> */}
             </Form>
