@@ -3,10 +3,10 @@ export const tranporationCreateValidation = Yup.object().shape({
     cargo_date: Yup.date()
       .required('Дата вантажу є обов\'язковою')
       .typeError('Будь ласка, введіть дійсну дату'), // Перевірка на коректність дати
-    from: Yup.string()
+      location_from: Yup.string()
       .required('Поле "Завантаження" є обов\'язковим')
       .min(2, 'Поле "Завантаження" має містити принаймні 2 символи'), // Мінімальна довжина
-    to: Yup.string()
+      location_to: Yup.string()
       .required('Поле "Розвантаження" є обов\'язковим')
       .min(2, 'Поле "Розвантаження" має містити принаймні 2 символи'), // Мінімальна довжина
       price: Yup.string()

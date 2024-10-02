@@ -14,9 +14,9 @@ const CommentCreateForm = ({item,onClose}) => {
   const userData = useSelector(state => state.auth.data);
   const toast = useCustomToast();
   const [errorCode, setErrorCode] = useState(null);
+  console.log('ITEM NEW',item);
+  
   const handleTransportationCommentCreate = async (values, { resetForm }) => {
-    console.log('Form Values:', values); // Log values when submitting
-
     const obj = {
       ...values,
       user_id: userData?.id,
@@ -29,7 +29,7 @@ const CommentCreateForm = ({item,onClose}) => {
       if (data.status === 201) {
         resetForm();
         soundSuccessCreateTransportation()
-        toast('Коментар створено', 'success')
+        toast(item.transportation_comment ? "Коментар оновлено":"Коментар створеено", 'success')
 
         setTimeout(()=>{
           onClose()
@@ -46,13 +46,12 @@ const CommentCreateForm = ({item,onClose}) => {
         transportation_comment: item.transportation_comment,
       }}
 
-     
       onSubmit={handleTransportationCommentCreate}
     >
       {({ errors, touched }) => (
         <Form>
           <TextField name="transportation_comment" type="textarea" label={"Коментар"} />
-          <Button colorScheme='green' marginTop={'20px'} type="submit">Створити коментар</Button>
+          <Button colorScheme='green' marginTop={'20px'} type="submit">{item.transportation_comment ? "Оновити коментар" : "Створити коментар"}</Button>
           {errorCode && (
             <Text color={errorCode.includes("створено") ? "green" : "red"}>
               {errorCode}

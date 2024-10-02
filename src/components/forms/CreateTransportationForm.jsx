@@ -5,15 +5,17 @@ import { tranporationCreateValidation } from '../../validations/tranporationCrea
 import * as Yup from 'yup'
 import TextField from './TextField';
 import DateField from './DateField';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import instance from '../../utils/axios';
 import { soundSuccessCreateTransportation } from '../../helpers/Sounds/soundEffects';
 import useCustomToast from '../../hooks/useCustomToast';
+import { addTransportation } from '../../redux/slices/transportations.slice';
 
 const CreateTransportationForm = ({onClose}) => {
   const userData = useSelector(state => state.auth.data);
   const toast = useCustomToast();
   const [errorCode, setErrorCode] = useState(null);
+  const dispatch = useDispatch()
   const handleTransportationCreate = async (values, { resetForm }) => {
     console.log('Form Values:', values); // Log values when submitting
 
@@ -24,13 +26,16 @@ const CreateTransportationForm = ({onClose}) => {
     try {
     
       const  data  = await instance.post("/transportation/create", obj);
+      console.log(data.data);
+      
     if (data.status === 201) {
-      resetForm();
+    dispatch(addTransportation(data.data))
+      // resetForm();
       soundSuccessCreateTransportation()
       toast('Перевезення створено','success')
-      setTimeout(()=>{
-        onClose()
-      },1000)
+      // setTimeout(()=>{
+      //   onClose()
+      // },1000)
     }
       
     } catch (error) {
@@ -44,11 +49,12 @@ const CreateTransportationForm = ({onClose}) => {
     cost:'',
     price:'',
     driver:"",
-    from:"",
-    to:"",
+    location_from:"",
+    location_to:"",
     transportation_comment:"",
     truck:"",
     truck_owner:"",
+    status:1
 
   }}
 
@@ -60,8 +66,8 @@ const CreateTransportationForm = ({onClose}) => {
       {/* <Input  width={'40%'} placeholder='Оберіть дату завантаження' size='md' type='date' name='cargo_date' /> */}
  <TextField name='cargo_date' type={'date'} label={'Дата завантаження'} required={true}/>
      <Box display={'flex'} gap={'10px'}>
-     <TextField name="from" type="text" label={"Завантаження"}required={true} />
-     <TextField name="to" type="text" label={"Вивантаження"}required={true} />
+     <TextField name="location_from" type="text" label={"Завантаження"}required={true} />
+     <TextField name="location_to" type="text" label={"Вивантаження"}required={true} />
      </Box>
      <Box display={'flex'} gap={'10px'}>
      <TextField name="price" type="number" label={"Ціна перевезення"}required={true} />

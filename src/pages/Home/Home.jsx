@@ -3,8 +3,10 @@ import React, { useState } from 'react'
 import ReusableModal from '../../components/reusable-modal/ReusableModal'
 import CreateTransportationForm from '../../components/forms/CreateTransportationForm';
 import TransportationsList from './TransportationsList';
+import { useDispatch } from 'react-redux';
 
 const Home = () => {
+  const dispatch = useDispatch();
   const {isOpen,onOpen,onClose} = useDisclosure();
   const [searchQuery, setSearchQuery] = useState('');
   const handleConfirm = () => {

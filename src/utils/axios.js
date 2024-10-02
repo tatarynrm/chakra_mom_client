@@ -15,7 +15,6 @@ instance.interceptors.request.use((config) => {
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
-
   return config;
 }, (error) => {
   // Обробка помилок, якщо потрібно
