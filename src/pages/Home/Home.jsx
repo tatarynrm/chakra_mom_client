@@ -6,7 +6,7 @@ import TransportationsList from './TransportationsList';
 
 const Home = () => {
   const {isOpen,onOpen,onClose} = useDisclosure();
-
+  const [searchQuery, setSearchQuery] = useState('');
   const handleConfirm = () => {
     // Your confirm action logic here
     console.log('Confirmed!');
@@ -17,15 +17,20 @@ const Home = () => {
 <Box display={'flex'} gap={'10px'}>
 
 <Button fontSize={12} onClick={onOpen} colorScheme="teal">Створити</Button>
-<Input type='text' placeholder='Пошук перевезення'/>
+<Input
+        type="text"
+        placeholder="Search transportations..."
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+      />
 </Box>
 
-<TransportationsList/>
+<TransportationsList searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
 <ReusableModal
 isOpen={isOpen}
 onClose={onClose}
 >
-<CreateTransportationForm/>   
+<CreateTransportationForm onClose={onClose}/>   
 </ReusableModal>
 
    </Stack>

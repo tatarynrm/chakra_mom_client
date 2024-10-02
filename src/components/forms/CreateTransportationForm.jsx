@@ -10,10 +10,9 @@ import instance from '../../utils/axios';
 import { soundSuccessCreateTransportation } from '../../helpers/Sounds/soundEffects';
 import useCustomToast from '../../hooks/useCustomToast';
 
-const CreateTransportationForm = () => {
+const CreateTransportationForm = ({onClose}) => {
   const userData = useSelector(state => state.auth.data);
   const toast = useCustomToast();
-  
   const [errorCode, setErrorCode] = useState(null);
   const handleTransportationCreate = async (values, { resetForm }) => {
     console.log('Form Values:', values); // Log values when submitting
@@ -29,6 +28,9 @@ const CreateTransportationForm = () => {
       resetForm();
       soundSuccessCreateTransportation()
       toast('Перевезення створено','success')
+      setTimeout(()=>{
+        onClose()
+      },1000)
     }
       
     } catch (error) {

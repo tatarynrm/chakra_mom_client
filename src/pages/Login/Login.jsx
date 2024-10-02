@@ -1,4 +1,4 @@
-import { Box, Button, FormControl, FormHelperText, FormLabel, Input, Stack } from '@chakra-ui/react'
+import { Box, Button, FormControl, FormHelperText, FormLabel, Input, InputGroup, InputRightElement, Stack, Text } from '@chakra-ui/react'
 import { Form, Formik } from 'formik';
 import React, { useEffect, useState } from 'react'
 import instance from '../../utils/axios';
@@ -6,6 +6,9 @@ import { fetchAuth } from '../../redux/slices/auth.slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import GoogleLoginComponent from './ReactLoginComponent';
+import { loginValidation } from '../../validations/loginValidation';
+import { CheckIcon } from '@chakra-ui/icons';
+import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 
 
 const Login = () => {
@@ -16,6 +19,7 @@ const Login = () => {
   const [tokenData, setTokenData] = useState(null);
   const [userId, setUserId] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [showPassword,setShowPassword] = useState(false)
 
   const loginUser = async (email, password) => {
     try {
@@ -45,23 +49,24 @@ const Login = () => {
 
 
   return (
-    <Stack display={'flex'} alignItems={'center'} justifyContent={'center'} height={'100vh'} width={'100%'}>
+    <Stack display={'flex'} alignItems={'center'} justifyContent={'center'} height={'80vh'} width={'100%'}>
 
 
       <Box display={'flex'} alignItems={'center'} flexDir={'column'}>
         <Formik
           initialValues={{ email: '', password: '' }}
-          validate={values => {
-            const errors = {};
-            if (!values.email) {
-              errors.email = 'Required';
-            } else if (
-              !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-            ) {
-              errors.email = 'Invalid email address';
-            }
-            return errors;
-          }}
+          // validate={values => {
+          //   const errors = {};
+          //   if (!values.email) {
+          //     errors.email = 'Required';
+          //   } else if (
+          //     !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+          //   ) {
+          //     errors.email = 'Invalid email address';
+          //   }
+          //   return errors;
+          // }}
+          validationSchema={loginValidation}
           onSubmit={async (values, { setSubmitting }) => {
             await loginUser(values.email, values.password)
           }}
@@ -76,27 +81,40 @@ const Login = () => {
             isSubmitting,
             /* and other goodies */
           }) => (
-            <Form style={{ display: 'flex', flexDirection: 'column', gap: '30px' }} onSubmit={handleSubmit}>
+            <Form style={{ display: 'flex', flexDirection: 'column', gap: '10px' }} onSubmit={handleSubmit}>
               <Input
                 type="email"
                 name="email"
+                id='email'
+                placeholder='Email'
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.email}
               />
-              {errors.email && touched.email && errors.email}
-              <Input
-                type="text"
+              <Text padding={0} fontSize={12} color={'red.200'}>{errors.email && touched.email && errors.email}</Text>
+             <InputGroup display={'flex'} flexDirection={'column'}>
+             <Input
+                type={showPassword ? 'text' : 'password'}
                 name="password"
+                id='password'
+                placeholder='Password'
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.password}
               />
-              {errors.password && touched.password && errors.password}
-              <Button marginTop={'40px'} type="submit" disabled={isSubmitting}>
-                Submit
+             <InputRightElement>
+{showPassword ?   <FaRegEye cursor={'pointer'} onClick={() =>setShowPassword(val => !val)} /> : <FaRegEyeSlash cursor={'pointer'}  onClick={() =>setShowPassword(val => !val)}/>}
+    
+   
+    </InputRightElement>
+    <Text padding={0} fontSize={12} color={'red.200'}>{errors.password && touched.password && errors.password}</Text>
+             </InputGroup>
+   
+          
+              <Button colorScheme='green' marginTop={'40px'} type="submit" disabled={isSubmitting}>
+                Увійти в аккаунт
               </Button>
-              <a href="https://api.logistic-mira.space/auth/google">Увійти через Google</a>
+              {/* <a href="https://api.logistic-mira.space/auth/google">Увійти через Google</a> */}
 
 {/* <GoogleLoginComponent/> */}
             </Form>
