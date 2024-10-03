@@ -54,6 +54,7 @@ const CreateTransportationForm = ({onClose}) => {
     transportation_comment:"",
     truck:"",
     truck_owner:"",
+    cargo_owner:'',
     status:1
 
   }}
@@ -76,6 +77,7 @@ const CreateTransportationForm = ({onClose}) => {
       <TextField name="driver" type="text" label={"Водій"}required={true} />
       <TextField name="truck" type="text" label={"Дані по авто"}required={true} />
       <TextField name="truck_owner" type="text" label={"Власник авто / диспетчер"} required={true}/>
+      <TextField name="cargo_owner" type="text" label={"Власник вантажу"} required={true}/>
       <TextField name="transportation_comment" type="textarea" label={"Коментар"} />
 
 

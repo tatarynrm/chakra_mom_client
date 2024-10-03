@@ -28,6 +28,9 @@ export const tranporationCreateValidation = Yup.object().shape({
     truck_owner: Yup.string()
       .required('Поле "Власник авто / диспетчер" є обов\'язковим')
       .min(2, 'Поле "Власник авто / диспетчер" має містити принаймні 2 символи'),    
+    cargo_owner: Yup.string()
+      .required('Поле "Власник вантажу" є обов\'язковим')
+      .min(2, 'Поле "Власник авто / диспетчер" має містити принаймні 2 символи'),    
     transportation_comment: Yup.string()
 
       .min(0, 'Поле "Власник авто / диспетчер" має містити принай')

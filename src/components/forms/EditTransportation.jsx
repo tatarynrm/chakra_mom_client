@@ -90,6 +90,7 @@ const EditTransportationForm = ({ item, onClose }) => {
                 truck: item.truck,
                 truck_owner: item.truck_owner,
                 status: item.status,
+                cargo_owner:item.cargo_owner
 
 
             }}
@@ -116,6 +117,7 @@ const EditTransportationForm = ({ item, onClose }) => {
                     <TextField name="driver" type="text" label={"Водій"} required={true} />
                     <TextField name="truck" type="text" label={"Дані по авто"} required={true} />
                     <TextField name="truck_owner" type="text" label={"Власник авто / диспетчер"} required={true} />
+                    <TextField name="cargo_owner" type="text" label={"Власник вантажу"} required={true} />
                     <TextField name="transportation_comment" type="textarea" label={"Коментар"} />
                     <SelectField
                         width={["100%", "100%", "100%", "100%"]}

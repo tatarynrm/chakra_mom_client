@@ -74,9 +74,13 @@ const TransportationCardItem = ({ item }) => {
           <Text fontSize={'20px'}>{item.truck_owner}</Text>
         </Box>
         <Divider orientation='vertical' />
+        <Box width={['100%', '100%', '20%']} display={'flex'} alignItems={'center'} textAlign={'center'} justifyContent={'center'}>
+          <Text fontSize={'20px'}>{item.cargo_owner}</Text>
+        </Box>
+        <Divider orientation='vertical' />
 
         <Flex position={'relative'} width={['100%', '100%', '10%']} gap={'10px'} alignItems={'center'} textAlign={'center'} justifyContent={'center'}>
-          <Button onClick={onOpen} bottom={0} right={0} position={''} fontSize={10}>{!item.transportation_comment ? 'Додати коментар' : 'Змінити коментар'}</Button>
+          {/* <Button onClick={onOpen} bottom={0} right={0} position={''} fontSize={10}>{!item.transportation_comment ? 'Додати коментар' : 'Змінити коментар'}</Button> */}
 
 <TransportationCommentButton item={item} setShowComment={setShowComment}/>
           <TransportationEditButton item={item} />
