@@ -13,6 +13,7 @@ import { MdOutlineChargingStation } from 'react-icons/md';
 import { getCardColors } from '../../helpers/colors/returnTransportationCardColor';
 import TransportationStatusTooltip from './TransportationSlices/TransportationStatusTooltip';
 import TransportationCommentButton from './TransportationSlices/TransportationCommentButton';
+import useCustomColorMode from '../../hooks/useCustomColorMode';
 const TransportationCardItem = ({ item }) => {
   const { isOpen, onOpen, onClose, onToggle } = useDisclosure();
   const bgColor = useColorModeValue('gray.100', 'gray.700'); // Колір фону для світлої та темної теми
@@ -21,66 +22,69 @@ const TransportationCardItem = ({ item }) => {
   const [showComment, setShowComment] = useState(false)
 
 
-  console.log('ITEM', item);
+const colorMode = useCustomColorMode();
+
+console.log('colorMode',colorMode);
+
 
   return (
-    <Card position={'relative'} padding={0} >
+    <Card  border={colorMode === 'dark' ? '1px solid lightgray': "1px solid black"} position={'relative'} padding={0} >
       <TransportationStatusTooltip item={item} />
       <Text position={'absolute'} padding={'2px'} borderRadius={'10px'} backgroundColor={'lightgray'} fontSize={'10px'} color='gray'>{moment(item.created_at).format('LLL')}</Text>
 
-      <CardBody padding={6} display={'flex'} flexDir={['column', 'column', 'row']} gap={'10px'}>
-        <Box width={['100%', '100%', '8%']} display={'flex'} alignItems={'center'} textAlign={'center'} justifyContent={'center'}>
+      <CardBody fontSize={['14px','16px']} padding={6} display={'flex'} flexDir={['column', 'column', 'column','row']} gap={'10px'}>
+        <Box width={['100%', '100%','100%', '6%']} display={'flex'} alignItems={'center'} textAlign={'center'} justifyContent={'center'}>
           <FcAlarmClock size={24} />
           <Text color='orange.300'>{moment(item.cargo_date).format('ll')}</Text>
         </Box>
-        <Divider orientation='vertical' />
+        <Divider borderColor={colorMode === 'dark' ? "whitesmoke" : "gray"} orientation='vertical' />
         {/*  */}
-        <Box width={['100%', '100%', '6%']} display={'flex'} alignItems={'center'} textAlign={'center'} justifyContent={'center'} >
-          <FaLocationArrow size={10} />
-          <Text fontSize={'16px'}>{item.location_from}</Text>
+        <Box width={['100%', '100%', '100%','10%']} display={'flex'} alignItems={'center'} textAlign={'left'} justifyContent={'center'} >
+     
+          <Text  >{item.location_from.toUpperCase()}</Text>
         </Box>
-        <Divider orientation='vertical' />
+        <Divider borderColor={colorMode === 'dark' ? "whitesmoke" : "gray"} orientation='vertical' />
         {/*  */}
-        <Box width={['100%', '100%', '80px']} display={'flex'} alignItems={'center'} textAlign={'center'} justifyContent={'center'}>
-          <FaLocationArrow size={10} />
-          <Text fontSize={'16px'}>{item.location_to}</Text>
+        <Box width={['100%', '100%', '100%','10%']} display={'flex'} alignItems={'center'} textAlign={'left'} justifyContent={'center'}>
+     
+          <Text >{item.location_to.toUpperCase()}</Text>
         </Box>
-        <Divider orientation='vertical' />
+        <Divider borderColor={colorMode === 'dark' ? "whitesmoke" : "gray"} orientation='vertical' />
         {/*  */}
-        <Box width={['100%', '100%', '6%']} display={'flex'} alignItems={'center'} textAlign={'center'} justifyContent={'center'}>
+        <Box width={['100%', '100%','100%', '6%']} display={'flex'} alignItems={'center'} textAlign={'center'} justifyContent={'center'}>
 
-          <Text fontSize={'20px'}>{item.price}</Text>
+          <Text >{item.price.toString().toUpperCase()}</Text>
         </Box>
-        <Divider orientation='vertical' />
+        <Divider borderColor={colorMode === 'dark' ? "whitesmoke" : "gray"} orientation='vertical' />
         {/*  */}
-        <Box width={['100%', '100%', '6%']} display={'flex'} alignItems={'center'} textAlign={'center'} justifyContent={'center'}>
-          <Text color={'green'} fontSize={'20px'}>{item.cost}</Text>
+        <Box width={['100%', '100%','100%', '6%']} display={'flex'} alignItems={'center'} textAlign={'center'} justifyContent={'center'}>
+          <Text color={'green'}>{item.cost}</Text>
         </Box>
-        <Divider orientation='vertical' />
+        <Divider borderColor={colorMode === 'dark' ? "whitesmoke" : "gray"} orientation='vertical' />
         {/*  */}
-        <Box width={['100%', '100%', '20%']} wordBreak={'break-word'} display={'flex'} alignItems={'center'} textAlign={'center'} justifyContent={'center'}>
+        <Box width={['100%', '100%','100%', '20%']} wordBreak={'break-word'} display={'flex'} alignItems={'center'} textAlign={'center'} justifyContent={'center'}>
 
-          <Text fontSize={'20px'}>{item.driver}</Text>
+          <Text >{item.driver.toUpperCase()}</Text>
         </Box>
-        <Divider orientation='vertical' />
+        <Divider borderColor={colorMode === 'dark' ? "whitesmoke" : "gray"} orientation='vertical' />
         {/*  */}
-        <Box width={['100%', '100%', '10%']} wordBreak={'break-word'} display={'flex'} alignItems={'center'} textAlign={'center'} justifyContent={'center'}>
+        <Box width={['100%', '100%', '100%','10%']} wordBreak={'break-word'} display={'flex'} alignItems={'center'} textAlign={'center'} justifyContent={'center'}>
 
-          <Text fontSize={'20px'}>{item.truck}</Text>
+          <Text >{item.truck.toUpperCase()}</Text>
         </Box>
-        <Divider orientation='vertical' />
+        <Divider borderColor={colorMode === 'dark' ? "whitesmoke" : "gray"} orientation='vertical' />
         {/*  */}
-        <Box width={['100%', '100%', '20%']} display={'flex'} alignItems={'center'} textAlign={'center'} justifyContent={'center'}>
-          <Text fontSize={'20px'}>{item.truck_owner}</Text>
+        <Box width={['100%', '100%','100%', '20%']} display={'flex'} alignItems={'center'} textAlign={'center'} justifyContent={'center'}>
+          <Text >{item.truck_owner.toUpperCase()}</Text>
         </Box>
-        <Divider orientation='vertical' />
-        <Box width={['100%', '100%', '20%']} display={'flex'} alignItems={'center'} textAlign={'center'} justifyContent={'center'}>
-          <Text fontSize={'20px'}>{item.cargo_owner}</Text>
+        <Divider borderColor={colorMode === 'dark' ? "whitesmoke" : "gray"} orientation='vertical' />
+        <Box width={['100%', '100%','100%', '20%']} display={'flex'} alignItems={'center'} textAlign={'center'} justifyContent={'center'}>
+          <Text >{item.cargo_owner.toUpperCase()}</Text>
         </Box>
-        <Divider orientation='vertical' />
+        <Divider borderColor={colorMode === 'dark' ? "whitesmoke" : "gray"} orientation='vertical' />
 
-        <Flex position={'relative'} width={['100%', '100%', '10%']} gap={'10px'} alignItems={'center'} textAlign={'center'} justifyContent={'center'}>
-          {/* <Button onClick={onOpen} bottom={0} right={0} position={''} fontSize={10}>{!item.transportation_comment ? 'Додати коментар' : 'Змінити коментар'}</Button> */}
+        <Flex position={'relative'} width={['100%', '100%', '100%','10%']} gap={'10px'} alignItems={'center'} textAlign={'center'} justifyContent={'center'}>
+         
 
 <TransportationCommentButton item={item} setShowComment={setShowComment}/>
           <TransportationEditButton item={item} />

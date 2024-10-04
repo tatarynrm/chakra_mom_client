@@ -48,7 +48,7 @@ const Navbar = () => {
 
 
 
-      {token && <Stack display={['none', 'none', 'flex']} flexDir={'row'} gap={'40px'} width={'100%'} alignItems={'center'} textAlign={'center'}>
+      {/* {token && <Stack display={['none', 'none', 'flex']} flexDir={'row'} gap={'40px'} width={'100%'} alignItems={'center'} textAlign={'center'}>
         <Link to={'/'}>
           <Text>Головна</Text>
         </Link>
@@ -58,7 +58,7 @@ const Navbar = () => {
         <Link to={'/currencies'}>
           <Text>Курси валют</Text>
         </Link>
-      </Stack>}
+      </Stack>} */}
 
       <HeaderAvatar />
 

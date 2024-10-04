@@ -23,20 +23,23 @@ const CreateTransportationForm = ({onClose}) => {
       ...values,
       user_id:userData?.id
     }
+    console.log(obj);
+    
     try {
     
-      const  data  = await instance.post("/transportation/create", obj);
-      console.log(data.data);
+      // const  data  = await instance.post("/transportation/create", obj);
+      // console.log(data.data);
       
-    if (data.status === 201) {
-    dispatch(addTransportation(data.data))
+    // if (data.status === 201) {
+    // dispatch(addTransportation(data.data))
       // resetForm();
-      soundSuccessCreateTransportation()
-      toast('Перевезення створено','success')
+      // soundSuccessCreateTransportation()
+      // toast('Перевезення створено','success')
       // setTimeout(()=>{
       //   onClose()
       // },1000)
-    }
+
+    // }
       
     } catch (error) {
       console.log('Submission Error:', error); // Log submission errors

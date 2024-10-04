@@ -1,4 +1,4 @@
-import { Box, Button, HStack, Stack, Switch, VStack } from "@chakra-ui/react";
+import { Box, Button, HStack, Stack, Switch, useColorMode, VStack } from "@chakra-ui/react";
 import ThemeSwitcher from "./components/buttons/theme-button/ThemeSwitcher";
 import CustomButton from "./components/buttons/button/CustomButton";
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
@@ -16,11 +16,11 @@ import useAuthFromUrl from "./hooks/useAuthFromUrl";
 function App() {
   const token = localStorage.getItem('token')
   const user = useSelector(state => state.auth.data)
-
+const {colorMode} = useColorMode()
   useAuthFromUrl()
 
   return (
-    <>
+    <Stack >
       <Navbar />
       <Routes>
         <Route path="/login" element={token && user ? <Navigate to="/" /> : <Login />} />
@@ -30,7 +30,7 @@ function App() {
         </Route>
       </Routes>
 
-    </>
+    </Stack>
 
   )
 }
