@@ -8,7 +8,7 @@ import ProtectedRoutes from "./utils/ProtectedRoutes";
 import Profile from "./pages/Profile/Profile";
 import Navbar from "./components/header/Navbar";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchAuthMe } from "./redux/slices/auth.slice";
 import useAuthFromUrl from "./hooks/useAuthFromUrl";
 
@@ -18,6 +18,8 @@ function App() {
   const user = useSelector(state => state.auth.data)
 const {colorMode} = useColorMode()
   useAuthFromUrl()
+  const [sum, setSum] = useState(1300);
+
 
   return (
     <Stack >
