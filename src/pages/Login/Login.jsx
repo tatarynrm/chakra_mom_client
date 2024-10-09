@@ -9,6 +9,7 @@ import GoogleLoginComponent from './ReactLoginComponent';
 import { loginValidation } from '../../validations/loginValidation';
 import { CheckIcon } from '@chakra-ui/icons';
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
+import axios from 'axios';
 
 
 const Login = () => {
@@ -20,10 +21,26 @@ const Login = () => {
   const [userId, setUserId] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showPassword,setShowPassword] = useState(false)
+
+
+  const [media, setMedia] = useState([]);
+
   const handleLogin = () => {
-    window.open('http://localhost:8800/auth/facebook', '_self');
-    // window.open('https://api.logistic-mira.space/auth/facebook', '_self');
-};
+      window.location.href = 'http://localhost:8800/auth/instagram';
+  };
+
+  const fetchMedia = async () => {
+      try {
+          const response = await axios.get('http://localhost:8800/manage', { withCredentials: true });
+          setMedia(response.data.data);
+      } catch (error) {
+          console.error('Error fetching media:', error);
+      }
+  };
+
+  useEffect(() => {
+      fetchMedia();
+  }, []);
   const loginUser = async (email, password) => {
     try {
       const obj = {
@@ -119,7 +136,7 @@ const Login = () => {
               </Button>
               {/* <a href="https://api.logistic-mira.space/auth/google">Увійти через Google</a> */}
 
-<Button colorScheme='orange' onClick={handleLogin}>Instagram Login</Button>
+              <button onClick={handleLogin}>Login with Instagram</button>
 {/* <GoogleLoginComponent/> */}
             </Form>
           )}
