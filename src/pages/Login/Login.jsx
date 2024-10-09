@@ -23,24 +23,6 @@ const Login = () => {
   const [showPassword,setShowPassword] = useState(false)
 
 
-  const [media, setMedia] = useState([]);
-
-  const handleLogin = () => {
-      window.location.href = 'http://localhost:8800/auth/instagram';
-  };
-
-  const fetchMedia = async () => {
-      try {
-          const response = await axios.get('http://localhost:8800/manage', { withCredentials: true });
-          setMedia(response.data.data);
-      } catch (error) {
-          console.error('Error fetching media:', error);
-      }
-  };
-
-  useEffect(() => {
-      fetchMedia();
-  }, []);
   const loginUser = async (email, password) => {
     try {
       const obj = {
@@ -136,7 +118,7 @@ const Login = () => {
               </Button>
               {/* <a href="https://api.logistic-mira.space/auth/google">Увійти через Google</a> */}
 
-              <button onClick={handleLogin}>Login with Instagram</button>
+        
 {/* <GoogleLoginComponent/> */}
             </Form>
           )}
