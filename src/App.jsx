@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import { fetchAuthMe } from "./redux/slices/auth.slice";
 import useAuthFromUrl from "./hooks/useAuthFromUrl";
 import axios from "axios";
+import Instagram from "./pages/Instagram/Instagram";
 
 
 function App() {
@@ -21,39 +22,17 @@ const {colorMode} = useColorMode()
   useAuthFromUrl()
   const [sum, setSum] = useState(1300);
 
-  const [media, setMedia] = useState([]);
-
-  const handleLogin = () => {
-      // window.location.href = 'http://localhost:8800/auth/instagram';
-      window.location.href = 'https://api.logistic-mira.space/auth/instagram';
-  };
-
-  const fetchMedia = async () => {
-      try {
-          // const response = await axios.get('http://localhost:8800/manage', { withCredentials: true });
-          const response = await axios.get('https://api.logistic-mira.space/manage', { withCredentials: true });
-         
-         console.log(response.data.data);
-         
-          setMedia(response.data.data);
-      } catch (error) {
-          console.error('Error fetching media:', error);
-      }
-  };
-
-  useEffect(() => {
-      fetchMedia();
-  }, []);
 
   return (
     <Stack >
-           <button onClick={handleLogin}>Login with Instagram</button>
+           
       <Navbar />
       <Routes>
         <Route path="/login" element={token && user ? <Navigate to="/" /> : <Login />} />
         <Route element={<ProtectedRoutes />}>
           <Route element={<Home />} path="/" />
           <Route element={<Profile />} path="/profile" />
+          <Route element={<Instagram />} path="/instagram" />
         </Route>
       </Routes>
 
