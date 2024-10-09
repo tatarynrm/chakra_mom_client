@@ -21,8 +21,8 @@ const Login = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showPassword,setShowPassword] = useState(false)
   const handleLogin = () => {
-    // window.open('http://localhost:8800/auth/facebook', '_self');
-    window.open('https://api.logistic-mira.space/auth/facebook', '_self');
+    window.open('http://localhost:8800/auth/facebook', '_self');
+    // window.open('https://api.logistic-mira.space/auth/facebook', '_self');
 };
   const loginUser = async (email, password) => {
     try {
