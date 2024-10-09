@@ -20,7 +20,9 @@ const Login = () => {
   const [userId, setUserId] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showPassword,setShowPassword] = useState(false)
-
+  const handleLogin = () => {
+    window.open('http://localhost:8800/auth/facebook', '_self');
+};
   const loginUser = async (email, password) => {
     try {
       const obj = {
@@ -116,6 +118,7 @@ const Login = () => {
               </Button>
               {/* <a href="https://api.logistic-mira.space/auth/google">Увійти через Google</a> */}
 
+<Button colorScheme='orange' onClick={handleLogin}>Instagram Login</Button>
 {/* <GoogleLoginComponent/> */}
             </Form>
           )}
