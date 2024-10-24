@@ -62,30 +62,46 @@ const EarningsPicker = () => {
           <Box>
             <Text>Дата початку:</Text>
             <DatePicker
-              selected={startDate}
-              onChange={(date) => setStartDate(date)}
-              selectsStart
-              startDate={startDate}
-              endDate={endDate}
-              dateFormat="yyyy-MM-dd"
-              locale="uk"
-              customInput={<Input ref={startDateInputRef} placeholder="Оберіть дату початку" autoComplete="off" />}
-            />
+  selected={startDate}
+  onChange={(date) => setStartDate(date)}
+  selectsStart
+  startDate={startDate}
+  endDate={endDate}
+  dateFormat="yyyy-MM-dd"
+  locale="uk"
+  customInput={
+    <Input
+      ref={startDateInputRef}
+      placeholder="Оберіть дату початку"
+      autoComplete="off"
+      readOnly
+      onClick={() => startDateInputRef.current.blur()} // Знімаємо фокус
+    />
+  }
+/>
           </Box>
 
           <Box>
             <Text>Дата завершення:</Text>
             <DatePicker
-              selected={endDate}
-              onChange={(date) => setEndDate(date)}
-              selectsEnd
-              startDate={startDate}
-              endDate={endDate}
-              minDate={startDate}
-              dateFormat="yyyy-MM-dd"
-              locale="uk"
-              customInput={<Input ref={endDateInputRef} placeholder="Оберіть дату завершення" autoComplete="off" />}
-            />
+  selected={endDate}
+  onChange={(date) => setEndDate(date)}
+  selectsEnd
+  startDate={startDate}
+  endDate={endDate}
+  minDate={startDate}
+  dateFormat="yyyy-MM-dd"
+  locale="uk"
+  customInput={
+    <Input
+      ref={endDateInputRef}
+      placeholder="Оберіть дату завершення"
+      autoComplete="off"
+      readOnly
+      onClick={() => endDateInputRef.current.blur()} // Знімаємо фокус
+    />
+  }
+/>
           </Box>
         </Flex>
 
