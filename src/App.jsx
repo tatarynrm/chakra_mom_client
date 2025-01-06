@@ -13,7 +13,7 @@ import { fetchAuthMe } from "./redux/slices/auth.slice";
 import useAuthFromUrl from "./hooks/useAuthFromUrl";
 import axios from "axios";
 import Instagram from "./pages/Instagram/Instagram";
-
+import "./styles.css"
 
 function App() {
   const token = localStorage.getItem('token')
@@ -24,8 +24,9 @@ const {colorMode} = useColorMode()
 
 
   return (
-    <Stack >
-           
+    <Stack className="">
+           <div class="grain-overlay"></div>
+      
       <Navbar />
       <Routes>
         <Route path="/login" element={token && user ? <Navigate to="/" /> : <Login />} />
